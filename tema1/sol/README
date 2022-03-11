@@ -1,0 +1,10 @@
+GRUPA: 335CA
+NUME: TACHE ALEXANDRU-CATALIN
+
+Rezolvare:
+->numarul de thread-uri(P) il citesc si verific daca acesta este 0 sau mai mic decat 0
+->am implementat o structura, struct arg_struct, in care am toate campurile necesare argumentelor transmise functiei thread_function, precum: thread_id, object_count, current_generation, P, bariera, objects, next_generation si sack_capacity
+->in run_genetic_algorithm lansez threadurile in executie folosind functia pthread_create, iar la final am partea de distrugere a barierei initializate si de eliberare a memoriei alocate
+->in thread_function realizez partea de initializare, intr-o forma paralela cu valori pentru start si end
+->paralelizez for-urile utilizate pt partile de copy_individual, mutate_bit-string_1, mutate_bit_string_2, crossover si ultimul de completare a indicilor generatiilor curente => toate for-urile le paralelizez folosind formulele de start si end. Pt functia de crossover pentru a avea grija de rulare doar pe indici pari, fac o verificare in functie de valoare lui start4, iar daca acesta e impar adaug 1.
+->pentru funtia de cmp, am introdus forul de calculare a numarului de cromozomi in for ul din functia thread_function, astfel incat aceasta sa fie rulata o singura data, iar rezultatul l-am transmis printr-un argument count pus in structura individual
